@@ -1,0 +1,40 @@
+let letter = 'A';
+let letters = [];
+let fontSize = 30;
+
+function setup() {
+  createCanvas(600, 400);
+  textSize(fontSize);
+}
+
+function draw() {
+  background(255);
+  for (let i = 0; i < letters.length; i++) {
+    letters[i].display();
+  }
+}
+
+function keyPressed() {
+  if (keyCode >= 65 && keyCode <= 90) { // Check if the pressed key is a letter
+    letter = String.fromCharCode(keyCode); // Get the corresponding letter
+  }
+}
+
+function mouseClicked() {
+  if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+    letters.push(new Letter(mouseX, mouseY, letter)); // Add a new letter to the array
+  }
+}
+
+class Letter {
+  constructor(x, y, letter) {
+    this.x = x;
+    this.y = y;
+    this.letter = letter;
+  }
+  
+  display() {
+    fill(0);
+    text(this.letter, this.x, this.y);
+  }
+}
