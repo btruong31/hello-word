@@ -1,0 +1,32 @@
+let message = "Ransom Letter";
+let fonts = ['Arial', 'Helvetica', 'Georgia', 'Comic Sans MS', 'Times New Roman'];
+let fontSizeMin = 20;
+let fontSizeMax = 40;
+
+function setup() {
+  createCanvas(600, 200);
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  generateRansomLetter();
+}
+
+function draw() {
+  background(255);
+  // Display the ransom letter
+  fill(0);
+  text(message, width / 2, height / 2);
+}
+
+function generateRansomLetter() {
+  let xPos = 0;
+  let yPos = height / 2;
+  for (let i = 0; i < message.length; i++) {
+    let letter = message.charAt(i);
+    let fontSize = random(fontSizeMin, fontSizeMax);
+    textSize(fontSize);
+    let font = random(fonts);
+    textFont(font);
+    text(letter, xPos, yPos);
+    xPos += textWidth(letter);
+  }
+}
